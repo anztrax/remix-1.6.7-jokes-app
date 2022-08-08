@@ -1,3 +1,4 @@
+import React from 'react';
 import type { MetaFunction, LinksFunction } from "@remix-run/node";
 import {
   Links,
@@ -37,20 +38,42 @@ export const links: LinksFunction = () => {
   ];
 }
 
-export default function App() {
+function Document({ children, title = `Remix: So great, it's funny!`}: {
+  children: React.ReactNode,
+  title?: string
+}){
   return (
     <html lang="en">
       <head>
         <Meta />
         <Links />
-        <title>Remix: So great, it's funny!</title>
+        <title>{title}</title>
       </head>
       <body>
-        <Outlet />
-        <ScrollRestoration />
-        <Scripts />
+        {children}
         <LiveReload />
       </body>
     </html>
+  );
+}
+
+export default function App() {
+  return (
+    <Document>
+      <Outlet />
+      <ScrollRestoration />
+      <Scripts />
+    </Document>
+  );
+}
+
+export function ErrorBoundary({ error }: {error: Error}){
+  return (
+    <Document title={'Uh-oh!'}>
+      <div className={'error-container'}>
+        <h1>App Error</h1>
+        <pre>{error.message}</pre>
+      </div>
+    </Document>
   );
 }

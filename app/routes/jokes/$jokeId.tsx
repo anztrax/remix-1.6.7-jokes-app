@@ -1,6 +1,10 @@
 import type { LoaderFunction } from "@remix-run/node";
 import { json } from '@remix-run/node';
-import { Link, useLoaderData } from '@remix-run/react';
+import {
+  Link,
+  useLoaderData,
+  useParams
+} from "@remix-run/react";
 import type { Joke } from '@prisma/client';
 
 import { db } from "~/utils/db.server";
@@ -8,6 +12,15 @@ import { db } from "~/utils/db.server";
 type LoaderData = {
   joke: Joke
 };
+
+export function ErrorBoundary(){
+  const { jokeId } = useParams();
+  return (
+    <div className="error-container">
+      {`There was an error loading joke by the id ${jokeId}. Sorry.`}
+    </div>
+  );
+}
 
 export const loader: LoaderFunction = async ({ params }) => {
   console.log('params: ',params);
