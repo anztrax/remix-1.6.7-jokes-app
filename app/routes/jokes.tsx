@@ -21,12 +21,16 @@ export const links: LinksFunction = () => {
 }
 
 type LoaderData = {
-  jokeListItems: Array<Joke>
+  jokeListItems: Array<{ id: string, name: string }>
 }
 
 export const loader: LoaderFunction = async () => {
   const data: LoaderData = {
-    jokeListItems: await db.joke.findMany()
+    jokeListItems: await db.joke.findMany({
+      take: 5,
+      select: { id: true, name: true},
+      orderBy: { createdAt : "desc" }
+    })
   }
   return json(data);
 }
