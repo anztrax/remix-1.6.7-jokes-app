@@ -1,7 +1,8 @@
 import React from 'react';
 import type {
   LinksFunction,
-  ActionFunction
+  ActionFunction,
+  MetaFunction
 } from '@remix-run/node';
 import { json } from '@remix-run/node';
 import {
@@ -22,6 +23,14 @@ export const links: LinksFunction = () => {
   return [
     {rel: 'stylesheet', href: stylesUrl }
   ];
+}
+
+export const meta: MetaFunction = () => {
+  return {
+    title: "Remix Jokes | Login",
+    description:
+      "Login to submit your own jokes to Remix Jokes!",
+  };
 }
 
 function validateUsername(username: unknown){

@@ -2,9 +2,15 @@
   "private": true,
   "sideEffects": false,
   "scripts": {
-    "build": "remix build",
-    "dev": "remix dev",
+    "build": "run-s \"build:*\"",
+    "build:css": "npm run generate:css -- --minify",
+    "build:remix": "remix build",
+    "dev": "run-p \"dev:*\"",
+    "dev:css": "npm run generate:css -- --watch",
+    "dev:remix": "remix dev",
+    "generate:css": "npx tailwindcss -i ./app/styles/antd-style.css -o ./app/antd-style.css",
     "start": "remix-serve build",
+    "build-less": "yarn lessc --js ./app/styles/antd-style.less ./app/styles/antd-style.css",
     "init-db": "yarn prisma init --datasource-provider sqlite",
     "db-push": "yarn prisma db push",
     "db-seed": "node --require esbuild-register prisma/seed.ts"
@@ -14,6 +20,7 @@
     "@remix-run/node": "^1.6.7",
     "@remix-run/react": "^1.6.7",
     "@remix-run/serve": "^1.6.7",
+    "antd": "^4.22.4",
     "bcryptjs": "^2.4.3",
     "react": "^17.0.2",
     "react-dom": "^17.0.2"
@@ -26,7 +33,11 @@
     "@types/react-dom": "^17.0.17",
     "esbuild-register": "^3.3.3",
     "eslint": "^8.20.0",
+    "less": "^4.1.3",
+    "less-plugin-clean-css": "^1.5.1",
+    "npm-run-all": "^4.1.5",
     "prisma": "^4.1.1",
+    "tailwindcss": "^3.1.8",
     "typescript": "^4.7.4"
   },
   "engines": {
