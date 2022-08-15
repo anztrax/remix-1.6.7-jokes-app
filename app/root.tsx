@@ -12,6 +12,7 @@ import {
   ScrollRestoration,
   useCatch,
 } from "@remix-run/react";
+import { RecoilRoot } from 'recoil';
 
 import antdStylesUrl from './antd-style.css';
 import tailwindcssUrl from './styles/tailwind.css';
@@ -90,11 +91,13 @@ function Document({ children, title = `Remix: So great, it's funny!`}: {
 
 export default function App() {
   return (
-    <Document>
-      <Outlet />
-      <ScrollRestoration />
-      <Scripts />
-    </Document>
+    <RecoilRoot>
+      <Document>
+        <Outlet />
+        <ScrollRestoration />
+        <Scripts />
+      </Document>
+    </RecoilRoot>
   );
 }
 
