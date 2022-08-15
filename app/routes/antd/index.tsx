@@ -1,6 +1,7 @@
 import React from 'react';
 import Button from "antd/lib/button";
-import { DatePicker } from "antd";
+import DatePicker from "antd/lib/date-picker";
+import { Outlet } from "@remix-run/react";
 
 const AntdIndexRoute = () => {
   return (

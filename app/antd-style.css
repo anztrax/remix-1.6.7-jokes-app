@@ -601,13 +601,12 @@ video {
   margin-bottom: 0px;
 }
 
-.hidden {
-  display: none;
+.flex {
+  display: flex;
 }
 
-.via-green-900 {
-  --tw-gradient-to: rgb(20 83 45 / 0);
-  --tw-gradient-stops: var(--tw-gradient-from), #14532d, var(--tw-gradient-to);
+.hidden {
+  display: none;
 }
 
 .text-3xl {
@@ -618,6 +617,19 @@ video {
 .text-9xl {
   font-size: 8rem;
   line-height: 1;
+}
+
+.font-bold {
+  font-weight: 700;
+}
+
+.italic {
+  font-style: italic;
+}
+
+.text-green-900 {
+  --tw-text-opacity: 1;
+  color: rgb(20 83 45 / var(--tw-text-opacity));
 }
 
 .text-rose-300 {
